@@ -21,7 +21,8 @@ class ContactHelper:
 
     def delete_first_contact(self):
         wd = self.app.wd
-        wd.get("http://localhost/addressbook/index.php")
+        if not (wd.current_url.endswith('/index.php')):
+            wd.get("http://localhost/addressbook/index.php")
         # select first contact
         wd.find_element_by_name("selected[]").click()
         # submit deletion
@@ -30,7 +31,8 @@ class ContactHelper:
 
     def edit_first(self, contact):
         wd = self.app.wd
-        wd.get("http://localhost/addressbook/index.php")
+        if not (wd.current_url.endswith('/index.php')):
+            wd.get("http://localhost/addressbook/index.php")
         wd.find_element_by_name("selected[]").click()
         wd.find_element_by_xpath('//*[@title="Edit"]').click()
         self.fill_contact_form(contact)
@@ -38,7 +40,8 @@ class ContactHelper:
 
     def modify_first(self, new_contact_data):
         wd = self.app.wd
-        wd.get("http://localhost/addressbook/index.php")
+        if not (wd.current_url.endswith('/index.php')):
+            wd.get("http://localhost/addressbook/index.php")
         wd.find_element_by_name("selected[]").click()
         wd.find_element_by_xpath('//*[@title="Edit"]').click()
         self.fill_contact_form(new_contact_data)
@@ -62,5 +65,6 @@ class ContactHelper:
 
     def count(self):
         wd = self.app.wd
-        wd.get("http://localhost/addressbook/index.php")
+        if not (wd.current_url.endswith('/index.php')):
+            wd.get("http://localhost/addressbook/index.php")
         return len(wd.find_elements_by_name("selected[]"))
