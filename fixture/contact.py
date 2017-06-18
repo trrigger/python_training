@@ -76,7 +76,7 @@ class ContactHelper:
         wd.get("http://localhost/addressbook/index.php")
         contacts = []
         for element in wd.find_elements_by_name('entry'):
-            text = element.text
+            columns = element.find_elements_by_tag_name('td')
             id = element.find_element_by_name("selected[]").get_attribute("value")
-            contacts.append(Contact(firstname=text, id=id))
+            contacts.append(Contact(firstname=columns[2].text, lastname=columns[1].text, id=id))
         return contacts
