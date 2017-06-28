@@ -7,7 +7,7 @@ def test_modify_first_contact(app):
         app.contact.create(Contact(firstname='test'))
     old_contacts = app.contact.get_contact_list()
     index = randrange(len(old_contacts))
-    contact = Contact(firstname="", lastname="", title="Test", company="Test", mobile="00000000", email="test@test.ru")
+    contact = Contact(firstname="", lastname="", title="Test", company="Test", mobilephone="00000000", email="test@test.ru")
     contact.id = old_contacts[index].id
     app.contact.edit_contact_by_index(index, contact)
     new_contacts = app.contact.get_contact_list()
@@ -20,7 +20,7 @@ def test_modify_first_contact(app):
 #    if app.contact.count() == 0:
 #        app.contact.create(Contact(firstname='test'))
 #    old_contacts = app.contact.get_contact_list()
-#   contact = Contact(firstname="", lastname="", title="", company="", mobile="", email="")
+#   contact = Contact(firstname="", lastname="", title="", company="", mobilephone="", email="")
 #    contact.id = old_contacts[0].id
 #    app.contact.edit_first(contact)
 #    new_contacts = app.contact.get_contact_list()
